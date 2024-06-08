@@ -1,5 +1,5 @@
 - 👋 Hi, I’m @Samir-codes-123
-- 👀 I’m interested in iventing new things.
+- 👀 I’m interested in inventing new things.
 - 🌱 I’m currently learning web development
 
 
