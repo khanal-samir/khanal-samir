@@ -8,7 +8,7 @@ I am a computer Science student who has a keen interest in Web Development.
 
 * 🌍  I'm based in Nepal
 * ✉️  You can contact me at [gdssamir@gmail.com](mailto:gdssamir@gmail.com)
-* 🧠  I'm learning React and Tailwind
+* 🧠  I'm learning Backend Development
 * 🤝  I'm open to collaborating on interesting frontend projects
 * ⚡  I love movies and TV shows
 
