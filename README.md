@@ -8,7 +8,7 @@ Aspiring Web Developer
 I am a computer Science student who has a keen interest in Web Development.
 
 * 🌍  I'm based in Nepal
-* 🖥️  See my portfolio at [MyPortfolio](http://https://samir-portfolio-simple.vercel.app/)
+* 🖥️  See my portfolio at [MyPortfolio](https://samir-portfolio-simple.vercel.app/)
 * ✉️  You can contact me at [gdssamir@gmail.com](mailto:gdssamir@gmail.com)
 * 🧠  I'm currently building a Social Media Application
 * 🤝  I'm open to collaborating on Intresting Web Applications
