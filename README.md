@@ -7,9 +7,9 @@ Web Developer | Computer Science Student
 I am a computer science student with a strong passion for web development, dedicated to building innovative projects focused on JavaScript architecture. I am committed to enhancing my skills to create high-quality, scalable web applications.
 
 * 🌍  I'm based in Nepal
-* 🖥️  See my portfolio at [MyPortfolio](http://samirkhanal.is-a.dev)
+* 🖥️  See my portfolio at [samirkhanal.is-a.dev](http://samirkhanal.is-a.dev)
 * ✉️  You can contact me at [gdssamir@gmail.com](mailto:gdssamir@gmail.com)
-* 🧠  I'm learning Fullstack Development
+* 🧠  I'm learning Nextjs
 * 🤝  I'm open to collaborating on Intresting Web Applications
 * ⚡  I love watching movies and TV shows
 
