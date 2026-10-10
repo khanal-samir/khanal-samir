@@ -1,0 +1,158 @@
+{
+  "html5": {
+    "label": "HTML5",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/html5.svg"
+  },
+  "css3": {
+    "label": "CSS3",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original.svg"
+  },
+  "javascript": {
+    "label": "JavaScript",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/javascript.svg"
+  },
+  "typescript": {
+    "label": "TypeScript",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/typescript.svg"
+  },
+  "bash": {
+    "label": "Bash",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/gnubash.svg"
+  },
+  "react": {
+    "label": "React",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/react.svg"
+  },
+  "nextjs": {
+    "label": "Next.js",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nextdotjs.svg"
+  },
+  "tailwind": {
+    "label": "Tailwind CSS",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/tailwindcss.svg"
+  },
+  "redux": {
+    "label": "Redux",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/redux.svg"
+  },
+  "nodejs": {
+    "label": "Node.js",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nodedotjs.svg"
+  },
+  "express": {
+    "label": "Express",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/express.svg"
+  },
+  "hono": {
+    "label": "Hono",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hono.svg"
+  },
+  "nestjs": {
+    "label": "NestJS",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/nestjs.svg"
+  },
+  "postgresql": {
+    "label": "PostgreSQL",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/postgresql.svg"
+  },
+  "mongodb": {
+    "label": "MongoDB",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/mongodb.svg"
+  },
+  "supabase": {
+    "label": "Supabase",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/supabase.svg"
+  },
+  "appwrite": {
+    "label": "Appwrite",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/appwrite.svg"
+  },
+  "convex": {
+    "label": "Convex",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/convex.svg"
+  },
+  "vitest": {
+    "label": "Vitest",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/vitest.svg"
+  },
+  "jest": {
+    "label": "Jest",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/jest/jest-plain.svg"
+  },
+  "githubactions": {
+    "label": "GitHub Actions",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/githubactions.svg"
+  },
+  "docker": {
+    "label": "Docker",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/docker.svg"
+  },
+  "aws": {
+    "label": "AWS",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/amazonwebservices/amazonwebservices-original-wordmark.svg"
+  },
+  "digitalocean": {
+    "label": "DigitalOcean",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/digitalocean.svg"
+  },
+  "render": {
+    "label": "Render",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/render.svg"
+  },
+  "git": {
+    "label": "Git",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/git.svg"
+  },
+  "figma": {
+    "label": "Figma",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/figma.svg"
+  },
+  "openai": {
+    "label": "OpenAI",
+    "source": "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/openai.svg"
+  },
+  "anthropic": {
+    "label": "Anthropic",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/anthropic.svg"
+  },
+  "mastra": {
+    "label": "Mastra",
+    "source": "https://mastra.ai/favicon/new-brand/icon.svg"
+  },
+  "cursor": {
+    "label": "Cursor",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/cursor.svg"
+  },
+  "opencode": {
+    "label": "OpenCode",
+    "source": "https://raw.githubusercontent.com/sst/opencode/dev/packages/ui/src/assets/favicon/favicon.svg"
+  },
+  "pi": {
+    "label": "Pi",
+    "source": "https://pi.dev/logo-auto.svg"
+  },
+  "github": {
+    "label": "GitHub",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/github.svg"
+  },
+  "linkedin": {
+    "label": "LinkedIn",
+    "source": "https://raw.githubusercontent.com/devicons/devicon/master/icons/linkedin/linkedin-original.svg"
+  },
+  "x": {
+    "label": "X",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/x.svg"
+  },
+  "devto": {
+    "label": "dev.to",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/devdotto.svg"
+  },
+  "hashnode": {
+    "label": "Hashnode",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/hashnode.svg"
+  },
+  "discord": {
+    "label": "Discord",
+    "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/discord.svg"
+  }
+}
