@@ -4,10 +4,11 @@ from concurrent.futures import ThreadPoolExecutor
 from html import escape
 from pathlib import Path
 import json
+import math
 import urllib.request
 import xml.etree.ElementTree as ET
 
-from PIL import Image, ImageDraw, ImageFont
+from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
@@ -16,8 +17,11 @@ ET.register_namespace("", "http://www.w3.org/2000/svg")
 SI = "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/"
 DEV = "https://raw.githubusercontent.com/devicons/devicon/master/icons/"
 LOBE = "https://raw.githubusercontent.com/lobehub/lobe-icons/master/packages/static-svg/icons/"
+LUCIDE = "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/"
 # Keep icon provenance beside the assets; brand marks belong to their owners.
 TOOLS = {
+    "portfolio": ("samirkhanal.is-a.dev", LUCIDE + "globe.svg", "#7DD3E8"),
+    "email": ("khanalsamirwork@gmail.com", LUCIDE + "mail.svg", "#F2BD6B"),
     "html5": ("HTML5", SI + "html5.svg", "#E34F26"),
     "css3": ("CSS3", DEV + "css3/css3-original.svg", "#1572B6"),
     "javascript": ("JavaScript", SI + "javascript.svg", "#F7DF1E"),
@@ -67,7 +71,8 @@ def badge(item):
         icon = ET.fromstring(response.read())
     if "viewBox" not in icon.attrib:
         icon = next(child for child in icon if child.tag.endswith("svg") and "viewBox" in child.attrib)
-    icon.attrib.update(x="12", y="10", width="20", height="20", fill=color)
+    icon.attrib.update(x="12", y="10", width="20", height="20")
+    icon.attrib.setdefault("fill", color)
     icon.attrib.pop("style", None)
     for element in icon.iter():
         for key, value in list(element.attrib.items()):
@@ -85,38 +90,51 @@ def badge(item):
 
 def banner(theme):
     dark = theme == "dark"
-    bg, panel, ink, muted, accent = ("#101D2C", "#172435", "#EDF2FA", "#A8BACF", "#F2BD6B") if dark else ("#EAF1F8", "#FFFFFF", "#1D3047", "#526981", "#A45E17")
-    font_dir = Path("/usr/share/fonts/truetype/firacode")
-    regular = ImageFont.truetype(str(font_dir / "FiraCode-Regular.ttf"), 20)
-    small = ImageFont.truetype(str(font_dir / "FiraCode-Regular.ttf"), 14)
-    title = ImageFont.truetype(str(font_dir / "FiraCode-Bold.ttf"), 47)
-    lines = ["$ whoami", "Software developer / CS student / Nepal", "$ building", "Web applications with JS/TS architecture."]
+    bg, ink, muted, ridge, accent = ("#101D2C", "#EDF2FA", "#A8BACF", "#35546D", "#7DD3E8") if dark else ("#EAF1F8", "#1D3047", "#526981", "#ABC2D4", "#247893")
+    title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 78)
+    small = ImageFont.truetype("/usr/share/fonts/truetype/firacode/FiraCode-Regular.ttf", 17)
+    points = [(772, 236), (852, 144), (887, 175), (959, 88), (1024, 177), (1063, 133), (1150, 236)]
+    lengths = [math.dist(a, b) for a, b in zip(points, points[1:])]
     frames = []
-    for step in range(33):
-        image = Image.new("RGB", (1200, 420), bg)
+    for step in range(64):
+        phase = (1 - math.cos(2 * math.pi * step / 64)) / 2
+        image = Image.new("RGB", (1200, 300), bg)
         d = ImageDraw.Draw(image)
-        d.polygon([(735, 420), (883, 181), (933, 256), (1024, 101), (1200, 420)], fill="#223A53" if dark else "#D6E3EF")
-        d.line([(745, 409), (883, 181), (933, 256), (1024, 101), (1190, 400)], fill="#486A88" if dark else "#9BB5CD", width=2)
-        d.text((48, 25), "SAMIR KHANAL / DEVELOPER WORKSPACE", font=small, fill=muted)
-        d.text((48, 61), "Code. Build. Iterate.", font=title, fill=ink)
-        d.rounded_rectangle((48, 142, 870, 343), radius=14, fill=panel, outline="#33465D" if dark else "#C8D6E5", width=1)
-        for i, c in enumerate(["#EF8C85", "#F2BD6B", "#79BCAA"]):
-            d.ellipse((69 + i*19, 159, 78 + i*19, 168), fill=c)
-        d.text((144, 154), "samir@nepal ~", font=small, fill=muted)
-        for index, line in enumerate(lines):
-            count = max(0, min(len(line), (step-index*7)*6))
-            d.text((70, 191 + index*33), line[:count], font=regular, fill=accent if index % 2 == 0 else ink)
-            if index*7 <= step < (index+1)*7:
-                x = 70 + int(d.textlength(line[:count], font=regular))
-                d.rectangle((x+3, 193 + index*33, x+12, 212 + index*33), fill=accent)
-        d.text((48, 373), "EXPLORE THE STACK BELOW / OPEN THE PORTFOLIO FOR MORE", font=small, fill=muted)
+        for x in range(778, 1170, 24):
+            for y in range(44, 274, 24):
+                d.point((x, y), fill=ridge)
+        for offset in (18, 36):
+            d.line([(x, y + offset) for x, y in points], fill=ridge, width=1)
+        d.line(points, fill=ridge, width=2)
+        remaining = phase * sum(lengths)
+        trail = [points[0]]
+        for a, b, length in zip(points, points[1:], lengths):
+            if remaining >= length:
+                trail.append(b)
+                remaining -= length
+            else:
+                fraction = remaining / length
+                trail.append((a[0] + (b[0]-a[0])*fraction, a[1] + (b[1]-a[1])*fraction))
+                break
+        d.line(trail, fill=accent, width=3)
+        x, y = trail[-1]
+        glow = Image.new("RGB", image.size, bg)
+        gd = ImageDraw.Draw(glow)
+        gd.ellipse((x-11, y-11, x+11, y+11), fill=accent)
+        image = Image.blend(image, glow.filter(ImageFilter.GaussianBlur(12)), .15)
+        d = ImageDraw.Draw(image)
+        d.ellipse((x-4, y-4, x+4, y+4), fill=accent)
+        d.text((54, 54), "NEPAL  /  JAVASCRIPT + TYPESCRIPT", font=small, fill=muted)
+        d.text((48, 99), "Samir Khanal", font=title, fill=ink)
+        d.line((54, 222, 677, 222), fill=ridge, width=1)
+        # The underline and ridge move together; the name never disappears.
+        start = 54 + int(phase * 553)
+        d.line((start, 222, start+70, 222), fill="#F2BD6B" if dark else "#A45E17", width=3)
         frames.append(image)
-    frames[-1].save(ASSETS / f"hero-{theme}.png", optimize=True)
-    # A shared palette keeps unchanged areas small across frames.
-    palette = frames[-1].quantize(colors=64)
+    frames[32].save(ASSETS / f"hero-{theme}.png", optimize=True)
+    palette = frames[32].quantize(colors=96)
     frames = [frame.quantize(palette=palette, dither=0) for frame in frames]
-    # Play once, then rest on the fully readable final frame. No flashing loop.
-    frames[0].save(ASSETS / f"hero-{theme}.gif", save_all=True, append_images=frames[1:], duration=[100]*32+[8000], optimize=True)
+    frames[0].save(ASSETS / f"hero-{theme}.gif", save_all=True, append_images=frames[1:], duration=80, loop=0, optimize=True)
 
 
 if __name__ == "__main__":
