@@ -1,14 +1,11 @@
 #!/usr/bin/env python3
-"""Regenerate the profile's checked-in graphics (Python 3 + Pillow)."""
+"""Regenerate the profile's self-contained SVG assets with Python 3."""
 from concurrent.futures import ThreadPoolExecutor
 from html import escape
 from pathlib import Path
 import json
-import math
 import urllib.request
 import xml.etree.ElementTree as ET
-
-from PIL import Image, ImageDraw, ImageFilter, ImageFont
 
 ROOT = Path(__file__).resolve().parents[1]
 ASSETS = ROOT / "assets"
@@ -71,76 +68,67 @@ def badge(item):
         icon = ET.fromstring(response.read())
     if "viewBox" not in icon.attrib:
         icon = next(child for child in icon if child.tag.endswith("svg") and "viewBox" in child.attrib)
-    icon.attrib.update(x="12", y="10", width="20", height="20")
+    icon.attrib.update(x="14", y="11", width="26", height="26")
     icon.attrib.setdefault("fill", color)
     icon.attrib.pop("style", None)
     for element in icon.iter():
         for key, value in list(element.attrib.items()):
             if value == "currentColor":
                 element.set(key, color)
+            elif slug == "aws" and value.lower() == "#252f3e":
+                element.set(key, "#F0F6FC")
+            elif slug == "jest" and value.lower() == "#99425b":
+                element.set(key, color)
         if element.tag.split("}")[-1] in {"script", "foreignObject"}:
             raise ValueError(f"Unsafe SVG: {slug}")
-    width = 48 + len(label) * 8
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="40" viewBox="0 0 {width} 40" role="img" aria-label="{escape(label)}">
-<title>{escape(label)}</title><rect x=".5" y=".5" width="{width-1}" height="39" rx="8" fill="#172435" stroke="#33465D"/>
+    width = 68 + len(label) * 11
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="48" viewBox="0 0 {width} 48" role="img" aria-label="{escape(label)}">
+<title>{escape(label)}</title><rect x=".5" y=".5" width="{width-1}" height="47" rx="8" fill="#151B23" stroke="#303D4E"/>
 {ET.tostring(icon, encoding="unicode")}
-<text x="40" y="25" fill="#EDF2FA" font-family="Verdana,Arial,sans-serif" font-size="12">{escape(label)}</text></svg>'''
+<text x="50" y="31" fill="#F0F6FC" font-family="Verdana,Arial,sans-serif" font-size="18">{escape(label)}</text></svg>'''
     (ASSETS / f"{slug}.svg").write_text(svg)
 
 
-def banner(theme):
-    dark = theme == "dark"
-    bg, ink, muted, ridge, accent = ("#101D2C", "#EDF2FA", "#A8BACF", "#35546D", "#7DD3E8") if dark else ("#EAF1F8", "#1D3047", "#526981", "#ABC2D4", "#247893")
-    title = ImageFont.truetype("/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf", 78)
-    small = ImageFont.truetype("/usr/share/fonts/truetype/firacode/FiraCode-Regular.ttf", 17)
-    points = [(772, 236), (852, 144), (887, 175), (959, 88), (1024, 177), (1063, 133), (1150, 236)]
-    lengths = [math.dist(a, b) for a, b in zip(points, points[1:])]
-    frames = []
-    for step in range(64):
-        phase = (1 - math.cos(2 * math.pi * step / 64)) / 2
-        image = Image.new("RGB", (1200, 300), bg)
-        d = ImageDraw.Draw(image)
-        for x in range(778, 1170, 24):
-            for y in range(44, 274, 24):
-                d.point((x, y), fill=ridge)
-        for offset in (18, 36):
-            d.line([(x, y + offset) for x, y in points], fill=ridge, width=1)
-        d.line(points, fill=ridge, width=2)
-        remaining = phase * sum(lengths)
-        trail = [points[0]]
-        for a, b, length in zip(points, points[1:], lengths):
-            if remaining >= length:
-                trail.append(b)
-                remaining -= length
-            else:
-                fraction = remaining / length
-                trail.append((a[0] + (b[0]-a[0])*fraction, a[1] + (b[1]-a[1])*fraction))
-                break
-        d.line(trail, fill=accent, width=3)
-        x, y = trail[-1]
-        glow = Image.new("RGB", image.size, bg)
-        gd = ImageDraw.Draw(glow)
-        gd.ellipse((x-11, y-11, x+11, y+11), fill=accent)
-        image = Image.blend(image, glow.filter(ImageFilter.GaussianBlur(12)), .15)
-        d = ImageDraw.Draw(image)
-        d.ellipse((x-4, y-4, x+4, y+4), fill=accent)
-        d.text((54, 54), "NEPAL  /  JAVASCRIPT + TYPESCRIPT", font=small, fill=muted)
-        d.text((48, 99), "Samir Khanal", font=title, fill=ink)
-        d.line((54, 222, 677, 222), fill=ridge, width=1)
-        # The underline and ridge move together; the name never disappears.
-        start = 54 + int(phase * 553)
-        d.line((start, 222, start+70, 222), fill="#F2BD6B" if dark else "#A45E17", width=3)
-        frames.append(image)
-    frames[32].save(ASSETS / f"hero-{theme}.png", optimize=True)
-    palette = frames[32].quantize(colors=96)
-    frames = [frame.quantize(palette=palette, dither=0) for frame in frames]
-    frames[0].save(ASSETS / f"hero-{theme}.gif", save_all=True, append_images=frames[1:], duration=80, loop=0, optimize=True)
+def banner():
+    marks = []
+    for slug, x, y, size in [("typescript", 892, 198, 56), ("react", 996, 66, 68), ("nodejs", 1078, 196, 60)]:
+        badge_svg = ET.parse(ASSETS / f"{slug}.svg").getroot()
+        icon = next(child for child in badge_svg if child.tag.endswith("svg"))
+        icon.attrib.update(x=str(x), y=str(y), width=str(size), height=str(size))
+        marks.append(f'<g class="{slug}-mark">{ET.tostring(icon, encoding="unicode")}</g>')
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="320" viewBox="0 0 1200 320" role="img" aria-labelledby="title description">
+<title id="title">Samir Khanal</title>
+<desc id="description">Software developer in Nepal. Animated TypeScript, React and Node.js brand marks beside a large name.</desc>
+<style>
+  .signal {{ animation: signal 6s linear infinite; }}
+  .react-mark {{ transform-box: fill-box; transform-origin: center; animation: spin 28s linear infinite; }}
+  @keyframes signal {{ to {{ stroke-dashoffset: -128; }} }}
+  @keyframes spin {{ to {{ transform: rotate(360deg); }} }}
+  @media (prefers-reduced-motion: reduce) {{ .signal, .react-mark {{ animation: none; }} }}
+</style>
+<rect x="1" y="1" width="1198" height="318" rx="18" fill="#0D1117" stroke="#303D4E" stroke-width="2"/>
+<text x="56" y="65" fill="#BAC5D3" font-family="Verdana,Arial,sans-serif" font-size="24">JavaScript / TypeScript</text>
+<text x="50" y="172" fill="#F0F6FC" font-family="DejaVu Sans,Arial,sans-serif" font-size="104" font-weight="700" letter-spacing="-4">Samir Khanal</text>
+<text x="56" y="227" fill="#BAC5D3" font-family="Verdana,Arial,sans-serif" font-size="28">Software Developer · Nepal</text>
+<path d="M56 266H760" fill="none" stroke="#253142" stroke-width="2"/>
+<path class="signal" d="M56 266H760" fill="none" stroke="#58A6FF" stroke-width="3" stroke-dasharray="14 50"/>
+<path d="M920 226Q900 135 1030 100Q1144 128 1108 226Q1018 288 920 226Z" fill="none" stroke="#303D4E" stroke-width="2"/>
+<path class="signal" d="M920 226Q900 135 1030 100Q1144 128 1108 226Q1018 288 920 226Z" fill="none" stroke="#58A6FF" stroke-width="2" stroke-dasharray="14 50"/>
+<circle cx="920" cy="226" r="48" fill="#151B23" stroke="#303D4E" stroke-width="2"/>
+<circle cx="1030" cy="100" r="54" fill="#151B23" stroke="#303D4E" stroke-width="2"/>
+<circle cx="1108" cy="226" r="48" fill="#151B23" stroke="#303D4E" stroke-width="2"/>
+{''.join(marks)}
+</svg>'''
+    (ASSETS / "hero-dark.svg").write_text(svg)
+    # The static version stays dark too; no JavaScript or raster images needed.
+    start = svg.index("<style>")
+    end = svg.index("</style>", start) + len("</style>")
+    (ASSETS / "hero-still.svg").write_text((svg[:start] + svg[end:]).replace("Animated TypeScript", "TypeScript"))
 
 
 if __name__ == "__main__":
     with ThreadPoolExecutor(max_workers=8) as pool:
         list(pool.map(badge, TOOLS.items()))
     (ASSETS / "icon-sources.json").write_text(json.dumps({slug: {"label": label, "source": url} for slug, (label, url, _) in TOOLS.items()}, indent=2) + "\n")
-    for theme in ("dark", "light"):
-        banner(theme)
-    print(f"Generated {len(TOOLS)} branded badges and light/dark banners.")
+    banner()
+    print(f"Generated {len(TOOLS)} larger SVG badges and the dark SVG banner.")
