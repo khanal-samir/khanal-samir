@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="64" height="40" viewBox="0 0 64 40" role="img" aria-label="Pi">
+<title>Pi</title><rect x=".5" y=".5" width="63" height="39" rx="8" fill="#172435" stroke="#33465D"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 800" x="12" y="10" width="20" height="20" fill="#F1BE58">
+  <path fill="#F09082" d="M165.29 165.29H517.36V400H400V282.65H165.29Z" />
+  <path fill="#4D9ABF" d="M165.29 282.65H282.65V400H400V517.36H282.65V634.72H165.29Z" />
+  <path fill="#F1BE58" d="M517.36 400H634.72V634.72H517.36Z" />
+</svg>
+<text x="40" y="25" fill="#EDF2FA" font-family="Verdana,Arial,sans-serif" font-size="12">Pi</text></svg>
