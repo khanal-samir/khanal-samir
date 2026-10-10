@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="96" height="40" viewBox="0 0 96 40" role="img" aria-label="Mastra">
 <title>Mastra</title><rect x=".5" y=".5" width="95" height="39" rx="8" fill="#172435" stroke="#33465D"/>
-<svg width="20" height="20" viewBox="0 0 400 400" fill="#FFFFFF" id="svg1" x="12" y="10">
+<svg width="20" height="20" viewBox="0 0 400 400" fill="none" id="svg1" x="12" y="10">
   <defs id="defs1" />
   <rect x="0" y="0" width="400" height="400" fill="#000" rx="20" id="rect1" />
   <g transform="matrix(10,0,0,10,30,30)" id="g1">

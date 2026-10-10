@@ -1,4 +1,12 @@
 {
+  "portfolio": {
+    "label": "samirkhanal.is-a.dev",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/globe.svg"
+  },
+  "email": {
+    "label": "khanalsamirwork@gmail.com",
+    "source": "https://raw.githubusercontent.com/lucide-icons/lucide/main/icons/mail.svg"
+  },
   "html5": {
     "label": "HTML5",
     "source": "https://raw.githubusercontent.com/simple-icons/simple-icons/develop/icons/html5.svg"
