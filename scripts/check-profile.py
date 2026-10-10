@@ -16,10 +16,10 @@ sources = json.loads((ROOT / "assets/icon-sources.json").read_text())
 assert {"openai", "anthropic", "jest", "mastra", "cursor", "opencode", "pi", "email", "portfolio"} <= sources.keys()
 for slug in sources:
     badge = ET.parse(ROOT / "assets" / f"{slug}.svg").getroot()
-    assert badge.attrib["height"] == "48"
+    assert badge.attrib["height"] == "38"
     icon = next(child for child in badge if child.tag.endswith("svg"))
     assert "viewBox" in icon.attrib, f"Unscaled icon: {slug}"
-    assert icon.attrib["width"] == "26"
+    assert icon.attrib["width"] == icon.attrib["height"] == "18"
     text = next(child for child in badge if child.tag.endswith("text"))
     assert text.attrib["font-size"] == "18"
     if slug in {"email", "portfolio"}:
@@ -48,4 +48,4 @@ assert "Building scalable web applications with a focus on JS/TS architecture." 
 assert "Open to collaborating on interesting web applications." in readme
 assert "<details" not in readme and "BLOG-START" not in readme
 assert not (ROOT / ".github/workflows/writing.yml").exists()
-print(f"OK: {len(sources)} larger SVG badges, dark animated SVG, reduced-motion fallback, and original bio.")
+print(f"OK: {len(sources)} compact SVG badges, dark animated SVG, reduced-motion fallback, and original bio.")

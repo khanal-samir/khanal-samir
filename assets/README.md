@@ -2,7 +2,7 @@
 
 The banner is a self-contained dark SVG: a large name beside embedded TypeScript, React, and Node.js brand marks, with a rotating React mark and moving connection lines. The dark background stays the same in every GitHub theme. The name does not animate away. An animation-free SVG is selected through `<picture>` when the browser requests reduced motion; the animated SVG also respects that preference internally.
 
-Badge labels are 18px with 26px SVG icons, up from 12px labels and 20px icons. All graphics remain vector-sharp when scaled.
+Badges use compact 18px SVG icons in 38px-high frames, with reduced padding. Labels retain the larger 18px type for readability. All graphics remain vector-sharp when scaled.
 
 Badges use locally embedded brand icons rather than remote badge services. Exact upstream URLs are recorded in `icon-sources.json`. Logos and trademarks belong to their respective owners; their inclusion indicates tools, not endorsement.
 

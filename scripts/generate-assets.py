@@ -68,7 +68,7 @@ def badge(item):
         icon = ET.fromstring(response.read())
     if "viewBox" not in icon.attrib:
         icon = next(child for child in icon if child.tag.endswith("svg") and "viewBox" in child.attrib)
-    icon.attrib.update(x="14", y="11", width="26", height="26")
+    icon.attrib.update(x="10", y="10", width="18", height="18")
     icon.attrib.setdefault("fill", color)
     icon.attrib.pop("style", None)
     for element in icon.iter():
@@ -81,11 +81,11 @@ def badge(item):
                 element.set(key, color)
         if element.tag.split("}")[-1] in {"script", "foreignObject"}:
             raise ValueError(f"Unsafe SVG: {slug}")
-    width = 68 + len(label) * 11
-    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="48" viewBox="0 0 {width} 48" role="img" aria-label="{escape(label)}">
-<title>{escape(label)}</title><rect x=".5" y=".5" width="{width-1}" height="47" rx="8" fill="#151B23" stroke="#303D4E"/>
+    width = 54 + len(label) * 11
+    svg = f'''<svg xmlns="http://www.w3.org/2000/svg" width="{width}" height="38" viewBox="0 0 {width} 38" role="img" aria-label="{escape(label)}">
+<title>{escape(label)}</title><rect x=".5" y=".5" width="{width-1}" height="37" rx="8" fill="#151B23" stroke="#303D4E"/>
 {ET.tostring(icon, encoding="unicode")}
-<text x="50" y="31" fill="#F0F6FC" font-family="Verdana,Arial,sans-serif" font-size="18">{escape(label)}</text></svg>'''
+<text x="36" y="26" fill="#F0F6FC" font-family="Verdana,Arial,sans-serif" font-size="18">{escape(label)}</text></svg>'''
     (ASSETS / f"{slug}.svg").write_text(svg)
 
 
@@ -131,4 +131,4 @@ if __name__ == "__main__":
         list(pool.map(badge, TOOLS.items()))
     (ASSETS / "icon-sources.json").write_text(json.dumps({slug: {"label": label, "source": url} for slug, (label, url, _) in TOOLS.items()}, indent=2) + "\n")
     banner()
-    print(f"Generated {len(TOOLS)} larger SVG badges and the dark SVG banner.")
+    print(f"Generated {len(TOOLS)} compact SVG badges and the dark SVG banner.")
