@@ -1,6 +1,8 @@
 # Profile assets
 
-The hero illustrations and animations were created for this profile. A glowing trace follows a Nepal-inspired mountain ridge, with a coordinated moving underline. The name stays readable throughout the smooth loop. Light and dark variants are included, along with still images selected through `<picture>` sources when the browser requests reduced motion.
+The banner is a self-contained dark SVG: a large name beside embedded TypeScript, React, and Node.js brand marks, with a rotating React mark and moving connection lines. The dark background stays the same in every GitHub theme. The name does not animate away. An animation-free SVG is selected through `<picture>` when the browser requests reduced motion; the animated SVG also respects that preference internally.
+
+Badge labels are 18px with 26px SVG icons, up from 12px labels and 20px icons. All graphics remain vector-sharp when scaled.
 
 Badges use locally embedded brand icons rather than remote badge services. Exact upstream URLs are recorded in `icon-sources.json`. Logos and trademarks belong to their respective owners; their inclusion indicates tools, not endorsement.
 
@@ -13,13 +15,13 @@ Icon sources:
 
 ## Maintenance
 
-From the repository root, with Python 3 and Pillow installed:
+From the repository root, with Python 3 installed (no additional packages needed):
 
 ```sh
 python3 scripts/generate-assets.py
 python3 scripts/check-profile.py
 ```
 
-The generator needs Fira Code at `/usr/share/fonts/truetype/firacode/` and DejaVu Sans at `/usr/share/fonts/truetype/dejavu/`. It downloads icons only when regenerating; viewing the profile does not contact those upstream sources.
+The generator downloads icons only when regenerating; viewing the profile does not contact those upstream sources. SVG text uses local system fonts, with no external font requests. Animation uses CSS inside the SVG image, not JavaScript or CSS injected into the README.
 
 The README keeps the original introduction, stack categories, social badges, and collaboration note, adding the requested AI tools and Jest. No feed updater, external badge service, JavaScript, or custom CSS is required.
