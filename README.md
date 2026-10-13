@@ -1,44 +1,28 @@
 <a href="https://samirkhanal.is-a.dev">
-  <picture>
-    <source media="(prefers-reduced-motion: reduce)" srcset="assets/hero-still.svg">
-    <img src="assets/hero-dark.svg" width="1200" alt="Samir Khanal — software developer in Nepal, with animated TypeScript, React and Node.js logos.">
-  </picture>
+  <img src="assets/hero.svg" alt="Samir Khanal: software developer from Pokhara, Nepal" width="100%">
 </a>
 
-### Software Developer · Computer Science Student · Nepal
+<p align="center">
+  <a href="https://samirkhanal.is-a.dev"><img src="assets/btn-portfolio.svg" alt="Portfolio"></a>
+  <a href="mailto:khanalsamirwork@gmail.com"><img src="assets/btn-email.svg" alt="Email"></a>
+  <a href="https://www.linkedin.com/in/samir-khanal-dev"><img src="assets/btn-linkedin.svg" alt="LinkedIn"></a>
+</p>
 
-Building scalable web applications with a focus on JS/TS architecture.
-
-[![Portfolio — samirkhanal.is-a.dev](assets/portfolio.svg)](https://samirkhanal.is-a.dev) [![Email — khanalsamirwork@gmail.com](assets/email.svg)](mailto:khanalsamirwork@gmail.com)
-
----
+<p align="center">
+  <img src="assets/contributions.svg" alt="GitHub contribution graph and streaks for khanal-samir" width="100%">
+</p>
 
 ## Stack
 
-### Languages
-[![HTML5](assets/html5.svg)](https://developer.mozilla.org/en-US/docs/Web/HTML) [![CSS3](assets/css3.svg)](https://developer.mozilla.org/en-US/docs/Web/CSS) [![JavaScript](assets/javascript.svg)](https://developer.mozilla.org/en-US/docs/Web/JavaScript) [![TypeScript](assets/typescript.svg)](https://www.typescriptlang.org) [![Bash](assets/bash.svg)](https://www.gnu.org/software/bash/)
-
-### Frontend
-[![React](assets/react.svg)](https://react.dev) [![Next.js](assets/nextjs.svg)](https://nextjs.org) [![Tailwind CSS](assets/tailwind.svg)](https://tailwindcss.com) [![Redux](assets/redux.svg)](https://redux.js.org)
-
-### Backend
-[![Node.js](assets/nodejs.svg)](https://nodejs.org) [![Express](assets/express.svg)](https://expressjs.com) [![Hono](assets/hono.svg)](https://hono.dev) [![NestJS](assets/nestjs.svg)](https://nestjs.com)
-
-### Databases & BaaS
-[![PostgreSQL](assets/postgresql.svg)](https://www.postgresql.org) [![MongoDB](assets/mongodb.svg)](https://www.mongodb.com) [![Supabase](assets/supabase.svg)](https://supabase.com) [![Appwrite](assets/appwrite.svg)](https://appwrite.io) [![Convex](assets/convex.svg)](https://www.convex.dev)
-
-### AI & agentic tools
-[![OpenAI](assets/openai.svg)](https://openai.com) [![Anthropic](assets/anthropic.svg)](https://www.anthropic.com) [![Mastra](assets/mastra.svg)](https://mastra.ai) [![Cursor](assets/cursor.svg)](https://cursor.com) [![OpenCode](assets/opencode.svg)](https://opencode.ai) [![Pi](assets/pi.svg)](https://pi.dev)
-
-### DevOps & Tools
-[![Jest](assets/jest.svg)](https://jestjs.io) [![Vitest](assets/vitest.svg)](https://vitest.dev) [![GitHub Actions](assets/githubactions.svg)](https://github.com/features/actions) [![Docker](assets/docker.svg)](https://www.docker.com) [![AWS](assets/aws.svg)](https://aws.amazon.com) [![DigitalOcean](assets/digitalocean.svg)](https://www.digitalocean.com) [![Render](assets/render.svg)](https://render.com) [![Git](assets/git.svg)](https://git-scm.com) [![Figma](assets/figma.svg)](https://www.figma.com)
-
----
+<img src="assets/stack.svg" alt="Tech stack: languages, frontend, backend, databases, AI tools and DevOps" width="100%">
 
 ## Connect
 
-[![GitHub](assets/github.svg)](https://github.com/khanal-samir) [![LinkedIn](assets/linkedin.svg)](https://www.linkedin.com/in/samir-khanal-dev) [![X](assets/x.svg)](https://x.com/samir__dev) [![dev.to](assets/devto.svg)](https://www.dev.to/khanalsamir) [![Hashnode](assets/hashnode.svg)](https://samir-khanal.hashnode.dev) [![Discord](assets/discord.svg)](https://discord.com/users/_itssaulgoodman)
-
----
-
-*Open to collaborating on interesting web applications.*
+<p>
+  <a href="https://github.com/khanal-samir"><img src="assets/btn-github.svg" alt="GitHub"></a>
+  <a href="https://www.linkedin.com/in/samir-khanal-dev"><img src="assets/btn-linkedin.svg" alt="LinkedIn"></a>
+  <a href="https://x.com/samir__dev"><img src="assets/btn-x.svg" alt="X"></a>
+  <a href="https://www.dev.to/khanalsamir"><img src="assets/btn-devto.svg" alt="dev.to"></a>
+  <a href="https://samir-khanal.hashnode.dev"><img src="assets/btn-hashnode.svg" alt="Hashnode"></a>
+  <a href="https://discord.com/users/_itssaulgoodman"><img src="assets/btn-discord.svg" alt="Discord"></a>
+</p>
